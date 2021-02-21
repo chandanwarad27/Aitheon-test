@@ -16,6 +16,19 @@
     </h3>
   </div>
   <hr />
+  <div class="text-center">
+    <button class="btn btn-default" (click)="goTo(0)">First</button>
+    <button class="btn btn-default" (click)="goTo(pager.index - 1)">
+      Prev
+    </button>
+    <button class="btn btn-primary" (click)="goTo(pager.index + 1)">
+      Next
+    </button>
+    <button class="btn btn-default" (click)="goTo(pager.count - 1)">
+      Last
+    </button>
+  </div>
+  <hr />
   <div>
     <button class="btn btn-warning">Quiz</button>
     <button class="btn btn-info">Review</button>

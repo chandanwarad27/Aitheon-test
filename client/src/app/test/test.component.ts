@@ -41,4 +41,12 @@ export class TestComponent implements OnInit {
         )
       : [];
   }
+
+  goTo(index: number) {
+    if (index >= 0 && index < this.pager.count) {
+      this.pager.index = index;
+      this.mode = "quiz";
+      console.log(this.quiz);
+    }
+  }
 }

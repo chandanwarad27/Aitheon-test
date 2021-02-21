@@ -7,6 +7,14 @@
 <div id="quiz">
   <h2 class="text-center font-weight-normal">Quiz Application</h2>
   <hr />
+  <div *ngFor="let question of filteredQuestions">
+    <div class="badge badge-info">
+      Question {{ pager.index + 1 }} of {{ pager.count }}
+    </div>
+    <h3 class="font-weight-normal">
+      {{ pager.index + 1 }}. <span [innerHTML]="question.question"></span>
+    </h3>
+  </div>
   <hr />
   <div>
     <button class="btn btn-warning">Quiz</button>

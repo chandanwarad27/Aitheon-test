@@ -29,6 +29,9 @@ export class TestComponent implements OnInit {
     this.quizService.get(quizName).subscribe((res) => {
       this.quiz = new Quiz(res);
       this.pager.count = this.quiz.questions.length;
+      this.quiz.questions.forEach((question) => {
+        question.options = this.shuffle(question.options);
+      });
     });
     this.mode = "quiz";
   }
@@ -46,7 +49,30 @@ export class TestComponent implements OnInit {
     if (index >= 0 && index < this.pager.count) {
       this.pager.index = index;
       this.mode = "quiz";
-      console.log(this.quiz);
     }
+  }
+
+  shuffle(array) {
+    let currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
+  onSelect(question: Question, option: Option) {
+    console.log(question, option);
+    question.options.forEach((x) => {
+      if (x.id !== option.id) x.selected = false;
+    });
   }
 }

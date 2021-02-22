@@ -75,4 +75,10 @@ export class TestComponent implements OnInit {
       if (x.id !== option.id) x.selected = false;
     });
   }
+
+  isAnswered(question: Question) {
+    return question.options.find((x) => x.selected)
+      ? "Answered"
+      : "Not Answered";
+  }
 }

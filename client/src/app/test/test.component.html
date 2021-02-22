@@ -60,6 +60,7 @@
         class="p-3 mb-2 bg-info {{
           isAnswered(question) == 'Answered' ? 'bg-info' : 'bg-warning'
         }}"
+        (click)="goTo(index)"
       >
         {{ index + 1 }}. {{ isAnswered(question) }}
       </div>

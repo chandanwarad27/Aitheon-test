@@ -10,6 +10,6 @@ export class QuizService {
   }
 
   getPath() {
-    return "assets/questions.json";
+    return "/api/questions";
   }
 }

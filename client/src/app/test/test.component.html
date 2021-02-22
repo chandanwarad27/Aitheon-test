@@ -6,48 +6,64 @@
 </div>
 <div id="quiz">
   <h2 class="text-center font-weight-normal">Quiz Application</h2>
-  <hr />
-  <div *ngFor="let question of filteredQuestions">
-    <div class="badge badge-info">
-      Question {{ pager.index + 1 }} of {{ pager.count }}
-    </div>
-    <h3 class="font-weight-normal">
-      {{ pager.index + 1 }}. <span [innerHTML]="question.question"></span>
-    </h3>
-    <div class="row text-left options" style="margin-left: 35px">
-      <div class="col-6" *ngFor="let option of question.options; let j = index">
-        <div class="option">
-          <label class="font-weight-normal" [attr.for]="j">
-            <input
-              id="flexCheckDefault"
-              class="form-check-input"
-              type="checkbox"
-              [(ngModel)]="option.selected"
-              (change)="onSelect(question, option)"
-            />
-            {{ option.name }}
-          </label>
+
+  <div *ngIf="mode == 'quiz'">
+    <hr />
+    <div *ngFor="let question of filteredQuestions">
+      <div class="badge badge-info">
+        Question {{ pager.index + 1 }} of {{ pager.count }}
+      </div>
+      <h3 class="font-weight-normal">
+        {{ pager.index + 1 }}. <span [innerHTML]="question.question"></span>
+      </h3>
+      <div class="row text-left options" style="margin-left: 35px">
+        <div
+          class="col-6"
+          *ngFor="let option of question.options; let j = index"
+        >
+          <div class="option">
+            <label class="font-weight-normal" [attr.for]="j">
+              <input
+                id="flexCheckDefault"
+                class="form-check-input"
+                type="checkbox"
+                [(ngModel)]="option.selected"
+                (change)="onSelect(question, option)"
+              />
+              {{ option.name }}
+            </label>
+          </div>
         </div>
       </div>
     </div>
+    <hr />
+    <div class="text-center">
+      <button class="btn btn-default" (click)="goTo(0)">First</button>
+      <button class="btn btn-default" (click)="goTo(pager.index - 1)">
+        Prev
+      </button>
+      <button class="btn btn-primary" (click)="goTo(pager.index + 1)">
+        Next
+      </button>
+      <button class="btn btn-default" (click)="goTo(pager.count - 1)">
+        Last
+      </button>
+    </div>
   </div>
-  <hr />
-  <div class="text-center">
-    <button class="btn btn-default" (click)="goTo(0)">First</button>
-    <button class="btn btn-default" (click)="goTo(pager.index - 1)">
-      Prev
-    </button>
-    <button class="btn btn-primary" (click)="goTo(pager.index + 1)">
-      Next
-    </button>
-    <button class="btn btn-default" (click)="goTo(pager.count - 1)">
-      Last
-    </button>
+
+  <div class="row text-center" *ngIf="mode == 'review'">
+    <div
+      class="col-4 cursor-pointer"
+      *ngFor="let question of quiz.questions; let index = index"
+    >
+      <div class="p-3 mb-2 bg-info">Answered or Not</div>
+    </div>
   </div>
+
   <hr />
   <div>
-    <button class="btn btn-warning">Quiz</button>
-    <button class="btn btn-info">Review</button>
+    <button class="btn btn-warning" (click)="mode = 'quiz'">Quiz</button>
+    <button class="btn btn-info" (click)="mode = 'review'">Review</button>
     <button class="btn btn-success">Submit Quiz</button>
   </div>
 </div>

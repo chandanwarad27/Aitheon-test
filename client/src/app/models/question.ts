@@ -1,4 +1,4 @@
-import { Option } from './option';
+import { Option } from "./option";
 
 export class Question {
   category: string;
@@ -17,9 +17,9 @@ export class Question {
     this.question = data.question;
     this.correct_answer = data.correct_answer;
     this.options = [];
-    this.options.push(new Option(0, this.correct_answer));
+    this.options.push(new Option(0, this.correct_answer, true));
     data.incorrect_answers.forEach((value, index) => {
-      this.options.push(new Option(index + 1, value));
+      this.options.push(new Option(index + 1, value, false));
     });
   }
 }

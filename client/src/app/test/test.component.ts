@@ -70,7 +70,6 @@ export class TestComponent implements OnInit {
   }
 
   onSelect(question: Question, option: Option) {
-    console.log(question, option);
     question.options.forEach((x) => {
       if (x.id !== option.id) x.selected = false;
     });
@@ -80,5 +79,19 @@ export class TestComponent implements OnInit {
     return question.options.find((x) => x.selected)
       ? "Answered"
       : "Not Answered";
+  }
+
+  isCorrect(question: Question) {
+    return question.options.every((x) => x.selected === x.isAnswer) ? "1" : "0";
+  }
+
+  onSubmit() {
+    this.mode = "result";
+  }
+
+  calcTotPts() {
+    return this.quiz.questions
+      .map((x) => x.options.every((op) => op.selected === op.isAnswer))
+      .filter(Boolean).length;
   }
 }

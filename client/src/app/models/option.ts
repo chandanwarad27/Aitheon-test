@@ -4,10 +4,10 @@ export class Option {
   isAnswer: boolean;
   selected: boolean;
 
-  constructor(id, name) {
+  constructor(id, name, isAnswer) {
     this.id = id;
     this.name = name;
-    this.isAnswer = false;
+    this.isAnswer = isAnswer;
     this.selected = false;
   }
 }

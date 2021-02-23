@@ -1,0 +1,26 @@
+<div class="container">
+  <h2 class="text-center font-weight-normal">Quiz Application</h2>
+  <div class="login-form">
+    <form>
+      <h2 class="text-center">Log in</h2>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          [(ngModel)]="name"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+      <div class="form-group">
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          (click)="onSubmit()"
+        >
+          Log in
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

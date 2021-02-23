@@ -1,6 +1,7 @@
 import { Component, OnInit, NgModule } from "@angular/core";
 import { QuizService } from "../services/quiz.service";
 import { Question, Quiz, Option } from "../models/index";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-test",
@@ -18,9 +19,11 @@ export class TestComponent implements OnInit {
     count: 1,
   };
 
-  constructor(private quizService: QuizService) {}
+  constructor(private quizService: QuizService, private router: Router) {}
 
   ngOnInit() {
+    this.router.navigate(["login"]);
+
     this.quizName = this.quizService.getPath();
     this.loadQuiz(this.quizName);
   }

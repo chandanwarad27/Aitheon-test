@@ -66,30 +66,6 @@
       </div>
     </div>
   </div>
-
-  <div class="result" *ngIf="mode == 'result'">
-    <h2>Quiz Result</h2>
-    <table class="table">
-      <tr>
-        <th scope="col">#</th>
-        <th
-          scope="col"
-          *ngFor="let question of quiz.questions; let index = index"
-        >
-          Q No.{{ index + 1 }}
-        </th>
-        <th scope="col">Total Points</th>
-      </tr>
-      <tr>
-        <th scope="row">User</th>
-        <td *ngFor="let question of quiz.questions">
-          {{ isCorrect(question) }}
-        </td>
-        <th>{{ calcTotPts() }}</th>
-      </tr>
-    </table>
-  </div>
-
   <hr />
   <div>
     <button class="btn btn-warning" (click)="mode = 'quiz'">Quiz</button>

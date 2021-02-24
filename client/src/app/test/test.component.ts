@@ -22,7 +22,12 @@ export class TestComponent implements OnInit {
   constructor(private quizService: QuizService, private router: Router) {}
 
   ngOnInit() {
-    this.router.navigate(["login"]);
+    const user = this.quizService.getCurrentUser();
+    console.log(user);
+    if (!user || user.trim() === "") {
+      this.router.navigate(["login"]);
+      return;
+    }
 
     this.quizName = this.quizService.getPath();
     this.loadQuiz(this.quizName);
@@ -90,6 +95,9 @@ export class TestComponent implements OnInit {
 
   onSubmit() {
     this.mode = "result";
+    this.quizService.submitQuiz(this.quiz);
+    this.quizService.clearUser();
+    this.router.navigate(["results"]);
   }
 
   calcTotPts() {

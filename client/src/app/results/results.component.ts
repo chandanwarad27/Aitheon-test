@@ -12,7 +12,18 @@ export class ResultsComponent implements OnInit {
 
   constructor(private quizService: QuizService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.allQuiz = this.quizService.getAllQuiz();
+    this.allQuiz.sort(
+      (a, b) =>
+        b.questions
+          .map((x) => x.options.every((op) => op.selected === op.isAnswer))
+          .filter(Boolean).length -
+        a.questions
+          .map((x) => x.options.every((op) => op.selected === op.isAnswer))
+          .filter(Boolean).length
+    );
+  }
 
   isCorrect(question: Question) {
     return question.options.every((x) => x.selected === x.isAnswer) ? "1" : "0";
@@ -22,7 +33,6 @@ export class ResultsComponent implements OnInit {
     const result = quiz.questions
       .map((x) => x.options.every((op) => op.selected === op.isAnswer))
       .filter(Boolean).length;
-    console.log(result);
     return result;
   }
 }

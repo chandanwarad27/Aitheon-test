@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { QuizService } from "../services/quiz.service";
 
 @Component({
   selector: "app-login",
@@ -9,7 +10,7 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   name: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private quizService: QuizService) {}
 
   ngOnInit() {}
 
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
     if (!this.name || this.name.trim() === "") {
       return alert("Invalid name");
     }
+    this.quizService.setUser(this.name);
     this.router.navigate(["test"]);
   }
 }
